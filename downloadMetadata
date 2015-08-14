@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dir=`dirname "$0"`
+cd "$dir"
+
+user=$1
+sku=$2
+folder="download/$sku"
+
+if [ "$user" == "" -o "$sku" == "" -o "$#" != "2" ]; then
+	echo "ERROR: Missing parameters."
+	echo "Use mode:"
+	echo "------------"
+	echo "$0 (iTunes Connect User) (password) (APP SKU)"
+	echo " "
+	exit
+fi
+
+echo -n "Enter PASSWORD: "
+read -s pass
+echo ""
+
+loaderFolder=/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
+
+"$loaderFolder/iTMSTransporter" -m lookupMetadata -u "$user" -p "$pass" -vendor_id "$sku" -destination "$folder"
