@@ -44,7 +44,7 @@ function buildAmazon(){
 	$res='';
 	//DisplayTitle_en_US,UnlockedDescription_en_US,LockedDescription_en_US,DisplayTitle_en_GB,UnlockedDescription_en_GB,LockedDescription_en_GB,DisplayTitle_de_DE,UnlockedDescription_de_DE,LockedDescription_de_DE,DisplayTitle_fr_FR,UnlockedDescription_fr_FR,LockedDescription_fr_FR,DisplayTitle_it_IT,UnlockedDescription_it_IT,LockedDescription_it_IT,DisplayTitle_es_ES,UnlockedDescription_es_ES,LockedDescription_es_ES,DisplayTitle_ja_JP,UnlockedDescription_ja_JP,LockedDescription_ja_JP,DisplayTitle_zh_CN,UnlockedDescription_zh_CN,LockedDescription_zh_CN,DisplayTitle_ko_KR,UnlockedDescription_ko_KR,LockedDescription_ko_KR,DisplayTitle_pt_BR,UnlockedDescription_pt_BR,LockedDescription_pt_BR,DisplayTitle_ru_RU,UnlockedDescription_ru_RU,LockedDescription_ru_RU'."\n";
 	$res='AchievementId,unlockedIconId,lockedIconId,pointValue,isHidden';
-	foreach($data[$achievements[0]['id']] as $lang=>$v){
+	foreach($data[$achievements[0]['title_id']] as $lang=>$v){
 		$res.=',DisplayTitle_'.$lang.',UnlockedDescription_'.$lang.',LockedDescription_'.$lang;
 	}
 
@@ -52,7 +52,7 @@ function buildAmazon(){
 	foreach($achievements as $ach){
 	//	if(!empty($data[$ach['id']])) ;
 		$res .= "\n".$ach['id'].','.$ach['icon'].','.$ach['icon'].','.$ach['points'].','.($ach['hidden']?'TRUE':'FALSE');
-		foreach($data[$ach['id']] as $lang=>$title){
+		foreach($data[$ach['title_id']] as $lang=>$title){
 			$unlocked = $data[$ach['description_id']][$lang];
 			$locked = $data[$ach['unlocked_id']][$lang];
 			$res.=',"'.$title.'","'.$unlocked.'","'.$locked.'"'; // add to every achievement, his description for before and after achieved
