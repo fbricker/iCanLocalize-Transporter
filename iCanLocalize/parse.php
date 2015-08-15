@@ -51,16 +51,21 @@ function buildAmazon(){
 	//AchievementID,UnlockedIconId,LockedIconId,50,TRUE,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description
 	foreach($achievements as $ach){
 	//	if(!empty($data[$ach['id']])) ;
-		$res .= "\n".$ach['id'].',UnlockedIconId,LockedIconId,'.$ach['points'].','.($ach['hidden']?'TRUE':'FALSE');
-		foreach($data[$ach['id']] as $lang=>$v){
-			$res.=',Title: '.$lang.',Unlocked: '.$lang.', Locked: '.$lang; // add to every achievement, his description for before and after achieved
+		$res .= "\n".$ach['id'].','.$ach['icon'].','.$ach['icon'].','.$ach['points'].','.($ach['hidden']?'TRUE':'FALSE');
+		foreach($data[$ach['id']] as $lang=>$title){
+			$unlocked = $data[$ach['description_id']][$lang];
+			$locked = $data[$ach['unlocked_id']][$lang];
+			$res.=',"'.$title.'","'.$unlocked.'","'.$locked.'"'; // add to every achievement, his description for before and after achieved
 		}
 	}
+
+	$res = str_replace('&apos;',"'",$res);
+	$res = str_replace('&amp;',"&",$res);
 	return $res;
 }
 
 $data=expand($data);
-echo buildAmazon()."\n";
+echo buildAmazon();
 //print_r($data);
 //echo buildLeaderBoard('leaderboard_completed_levels','level_singular','level_plural',$data);
 //print_r($data);

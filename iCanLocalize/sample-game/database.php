@@ -80,20 +80,23 @@ $forcedTranslations['zh-TW'] = $forcedTranslations['ja-JP'];
 $leaderboards=array();
 $leaderboards[0] = array('id'=>'leaderboard_completed_levels');
 
-function buildAch($id,$points,$hidden){
-	return array('id'=>$id,'points'=>$points,'hidden'=>$hidden);
+function buildAch($id,$points,$hidden,$icon,$description,$completed){
+	return array('id'=>$id,
+				'points'=>$points,'hidden'=>$hidden,
+				'icon'=>$icon,
+				'description_id'=>$description,'unlocked_id'=>$completed);
 }
 
 $achievements=array();
-$achievements[0] = buildAch('complete_stage_1',50,false);
-$achievements[1] = buildAch('unlock_stage_2',  50,false);
-$achievements[2] = buildAch('complete_stage_2',50,true);
-$achievements[3] = buildAch('unlock_stage_3',  50,true);
-$achievements[4] = buildAch('complete_stage_3',50,true);
-$achievements[5] = buildAch('unlock_stage_4',  50,true);
-$achievements[6] = buildAch('complete_stage_4',50,true);
-$achievements[7] = buildAch('unlock_stage_5',  50,true);
-$achievements[8] = buildAch('complete_stage_5',50,true);
-$achievements[9] = buildAch('unlock_stage_6'  ,50,true);
-$achievements[10]= buildAch('complete_stage_6',50,true);
+$achievements[0] = buildAch('complete_stage_1',50,false, 'puralax_1_completed','complete_stage_1_description','completed_stage_1_description');
+$achievements[1] = buildAch('unlock_stage_2',  50,false, 'puralax_2_unlocked' ,'unlock_stage_2_description'  ,'unlocked_stage_2_description' );
+$achievements[2] = buildAch('complete_stage_2',50,true,  'puralax_2_completed','complete_stage_2_description','completed_stage_2_description');
+$achievements[3] = buildAch('unlock_stage_3',  50,true,  'puralax_3_unlocked' ,'unlock_stage_3_description'  ,'unlocked_stage_3_description' );
+$achievements[4] = buildAch('complete_stage_3',50,true,  'puralax_3_completed','complete_stage_3_description','completed_stage_3_description');
+$achievements[5] = buildAch('unlock_stage_4',  50,true,  'puralax_4_unlocked' ,'unlock_stage_4_description'  ,'unlocked_stage_4_description' );
+$achievements[6] = buildAch('complete_stage_4',50,true,  'puralax_4_completed','complete_stage_4_description','completed_stage_4_description');
+$achievements[7] = buildAch('unlock_stage_5',  50,true,  'puralax_5_unlocked' ,'unlock_stage_5_description'  ,'unlocked_stage_5_description' );
+$achievements[8] = buildAch('complete_stage_5',50,true,  'puralax_5_completed','complete_stage_5_description','completed_stage_5_description');
+$achievements[9] = buildAch('unlock_stage_6'  ,50,true,  'puralax_6_unlocked' ,'unlock_stage_6_description'  ,'unlocked_stage_6_description' );
+$achievements[10]= buildAch('complete_stage_6',50,true,  'puralax_6_completed','complete_stage_6_description','completed_stage_6_description');
 
