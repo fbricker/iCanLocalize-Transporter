@@ -94,9 +94,7 @@ function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
 
 define('SKU','0777');
 
-global $useful,$langMap,$nonSingularLanguages,$forcedTranslations;
-$useful = array('leaderboard_completed_levels','level_singular','level_plural','completed_stage_X_description','complete_stage_X_description','unlock_stage_X','complete_stage_X','unlock_stage_X_description','unlocked_stage_X_description');
-
+global $langMap,$nonSingularLanguages,$forcedTranslations;
 
 $nonSingularLanguages = array('fr-FR','pt-BR','ru-RU','ja-JP','cmn-Hans','cmn-Hant','tr-TR','vi-VI','ko-KR');
 $langMap = array();
@@ -121,27 +119,3 @@ $langMap['Polish'] = array();
 $langMap['Arabic'] = array();
 $langMap['Catalan'] = array();
 
-$forcedTranslations = array();
-
-$forcedTranslations['ko-KR']['1'] = '일';
-$forcedTranslations['ko-KR']['2'] = '이';
-$forcedTranslations['ko-KR']['3'] = '삼';
-$forcedTranslations['ko-KR']['4'] = '사';
-$forcedTranslations['ko-KR']['5'] = '오';
-$forcedTranslations['ko-KR']['6'] = '육';
-$forcedTranslations['ko-KR']['7'] = '칠';
-$forcedTranslations['ko-KR']['8'] = '팔';
-$forcedTranslations['ko-KR']['9'] = '구';
-
-$forcedTranslations['ja-JP']['1'] = '一';
-$forcedTranslations['ja-JP']['2'] = '二';
-$forcedTranslations['ja-JP']['3'] = '三';
-$forcedTranslations['ja-JP']['4'] = '四';
-$forcedTranslations['ja-JP']['5'] = '五';
-$forcedTranslations['ja-JP']['6'] = '六';
-$forcedTranslations['ja-JP']['7'] = '七';
-$forcedTranslations['ja-JP']['8'] = '八';
-$forcedTranslations['ja-JP']['9'] = '九';
-
-$forcedTranslations['cmn-Hans'] = $forcedTranslations['ja-JP'];
-$forcedTranslations['cmn-Hant'] = $forcedTranslations['ja-JP'];
