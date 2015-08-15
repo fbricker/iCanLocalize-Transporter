@@ -53,8 +53,8 @@ function buildAmazon(){
 	//	if(!empty($data[$ach['id']])) ;
 		$res .= "\n".$ach['id'].','.$ach['icon'].','.$ach['icon'].','.$ach['points'].','.($ach['hidden']?'TRUE':'FALSE');
 		foreach($data[$ach['title_id']] as $lang=>$title){
-			$unlocked = $data[$ach['description_id']][$lang];
-			$locked = $data[$ach['unlocked_id']][$lang];
+			$locked = $data[$ach['description_id']][$lang];
+			$unlocked = $data[$ach['unlocked_id']][$lang];
 			$res.=',"'.$title.'","'.$unlocked.'","'.$locked.'"'; // add to every achievement, his description for before and after achieved
 		}
 	}
