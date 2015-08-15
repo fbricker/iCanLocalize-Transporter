@@ -33,13 +33,25 @@ require_once $folder.'/database.php';
 
 $xmlData = file_get_contents($xmlFile); 
 $dom = str_get_html( $xmlData );
-$data = array();
 
 foreach($dom->find('string') as $elem){
 	$data[$elem->attr['label']]=buildMap($elem);
 }
 
+function buildAmazon(){
+	global $data, $achievements;
+	$res='';
+	$res='AchievementId,unlockedIconId,lockedIconId,pointValue,isHidden,DisplayTitle_en_US,UnlockedDescription_en_US,LockedDescription_en_US,DisplayTitle_en_GB,UnlockedDescription_en_GB,LockedDescription_en_GB,DisplayTitle_de_DE,UnlockedDescription_de_DE,LockedDescription_de_DE,DisplayTitle_fr_FR,UnlockedDescription_fr_FR,LockedDescription_fr_FR,DisplayTitle_it_IT,UnlockedDescription_it_IT,LockedDescription_it_IT,DisplayTitle_es_ES,UnlockedDescription_es_ES,LockedDescription_es_ES,DisplayTitle_ja_JP,UnlockedDescription_ja_JP,LockedDescription_ja_JP,DisplayTitle_zh_CN,UnlockedDescription_zh_CN,LockedDescription_zh_CN,DisplayTitle_ko_KR,UnlockedDescription_ko_KR,LockedDescription_ko_KR,DisplayTitle_pt_BR,UnlockedDescription_pt_BR,LockedDescription_pt_BR,DisplayTitle_ru_RU,UnlockedDescription_ru_RU,LockedDescription_ru_RU'."\n";
+	foreach($achievements as $ach){
+		$res .= $ach['id'].',UnlockedIconId,LockedIconId,'.$ach['points'].','.($ach['hidden']?'TRUE':'FALSE')."\n";
+	}
+//AchievementID,UnlockedIconId,LockedIconId,50,TRUE,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description,Displayed Achievement Title,Unlocked Achievement Description,Locked Achievement Description
+	return $res;
+}
 
+echo buildAmazon();
+
+/*
 for($i=1; $i<=6; $i++){
 	$tmp=buildAchievement('complete_stage_X','complete_stage_X_description','completed_stage_X_description',$data,$i);
 	file_put_contents('complete_stage_'.$i.'.xml', $tmp);
@@ -49,6 +61,6 @@ for($i=2; $i<=6; $i++){
 	$tmp = buildAchievement('unlock_stage_X','unlock_stage_X_description','unlocked_stage_X_description',$data,$i);
 	file_put_contents('unlock_stage_'.$i.'.xml', $tmp);
 }
-
+*/
 //echo buildLeaderBoard('leaderboard_completed_levels','level_singular','level_plural',$data);
 //print_r($data);

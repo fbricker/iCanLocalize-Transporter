@@ -1,18 +1,18 @@
 <?php 
 require_once "simple_html_dom.php";
-global $langMap,$nonSingularLanguages,$forcedTranslations,$achievements,$leaderboards;
+global $appleLangMap,$nonSingularLanguages,$forcedTranslations,$achievements,$leaderboards,$data,$amazonLangMap;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function buildMap($dom){
-	global $langMap;
+	global $appleLangMap;
 	$res = array();
 	$eng=explode("<translation",$dom->innertext,2);
 	
-	foreach($langMap['English'] as $lang) $res[$lang]=$eng[0];
+	foreach($appleLangMap['English'] as $lang) $res[$lang]=$eng[0];
 	foreach($dom->find('translation') as $elem){
-		foreach($langMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;;
+		foreach($appleLangMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;;
 	}
 	return $res;
 }
@@ -92,28 +92,52 @@ function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
     return $res;
 }
 
+$data = array();
 $leaderboards = array();
 $achievements = array();
 $nonSingularLanguages = array('fr-FR','pt-BR','ru-RU','ja-JP','cmn-Hans','cmn-Hant','tr-TR','vi-VI','ko-KR');
-$langMap = array();
 
-$langMap['English'] = array('en-US','en-GB');
-$langMap['French'] = array('fr-FR');
-$langMap['German'] = array('de-DE');
-$langMap['Portuguese'] = array('pt-BR','pt-PT');
-$langMap['Russian'] = array('ru-RU');
-$langMap['Spanish'] = array('es-ES');
-$langMap['Italian'] = array('it-IT');
-$langMap['Japanese'] = array('ja-JP');
-$langMap['Dutch'] = array('nl-NL');
-$langMap['Chinese (Simplified)'] = array('cmn-Hans');
-$langMap['Chinese (Traditional)'] = array('cmn-Hant');
-$langMap['Turkish'] = array('tr-TR');
-$langMap['Vietnamese'] = array('vi-VI');
-$langMap['Korean'] = array('ko-KR');
+$appleLangMap = array();
 
-$langMap['Hebrew'] = array();
-$langMap['Polish'] = array();
-$langMap['Arabic'] = array();
-$langMap['Catalan'] = array();
+$appleLangMap['English']	= array('en-US','en-GB');
+$appleLangMap['French']		= array('fr-FR');
+$appleLangMap['German']		= array('de-DE');
+$appleLangMap['Portuguese']	= array('pt-BR','pt-PT');
+$appleLangMap['Russian']	= array('ru-RU');
+$appleLangMap['Spanish']	= array('es-ES');
+$appleLangMap['Italian']	= array('it-IT');
+$appleLangMap['Japanese']	= array('ja-JP');
+$appleLangMap['Dutch']		= array('nl-NL');
+$appleLangMap['Chinese (Simplified)'] = array('cmn-Hans');
+$appleLangMap['Chinese (Traditional)'] = array('cmn-Hant');
+$appleLangMap['Turkish']	= array('tr-TR');
+$appleLangMap['Vietnamese']	= array('vi-VI');
+$appleLangMap['Korean']		= array('ko-KR');
+
+$appleLangMap['Hebrew']		= array();
+$appleLangMap['Polish']		= array();
+$appleLangMap['Arabic']		= array();
+$appleLangMap['Catalan']	= array();
+
+$amazonLangMap = array();
+$amazonLangMap['English']	= array('en_US','en_GB');
+$amazonLangMap['French']	= array('fr_FR');
+$amazonLangMap['German']	= array('de_DE');
+$amazonLangMap['Portuguese']= array('pt_BR');
+$amazonLangMap['Russian']	= array('ru_RU');
+$amazonLangMap['Spanish']	= array('es_ES');
+$amazonLangMap['Italian']	= array('it_IT');
+$amazonLangMap['Japanese']	= array('ja_JP');
+$amazonLangMap['Korean']	= array('ko_KR');
+$amazonLangMap['Chinese (Simplified)'] = array('zh_CN');
+
+$amazonLangMap['Chinese (Traditional)'] = array();
+$amazonLangMap['Turkish']	= array();
+$amazonLangMap['Dutch']		= array();
+$amazonLangMap['Vietnamese']= array();
+$amazonLangMap['Hebrew']	= array();
+$amazonLangMap['Polish']	= array();
+$amazonLangMap['Arabic']	= array();
+$amazonLangMap['Catalan']	= array();
+
 

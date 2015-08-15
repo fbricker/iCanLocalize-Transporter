@@ -29,15 +29,20 @@ $forcedTranslations['cmn-Hant'] = $forcedTranslations['ja-JP'];
 $leaderboards=array();
 $leaderboards[0] = array('id'=>'leaderboard_completed_levels');
 
+function buildAch($id,$points,$hidden){
+	return array('id'=>$id,'points'=>$points,'hidden'=>$hidden);
+}
+
 $achievements=array();
-$achievements[0] = array('id'=>'complete_stage_1');
-$achievements[1] = array('id'=>'unlock_stage_2');
-$achievements[2] = array('id'=>'complete_stage_2');
-$achievements[3] = array('id'=>'unlock_stage_3');
-$achievements[4] = array('id'=>'complete_stage_3');
-$achievements[5] = array('id'=>'unlock_stage_4');
-$achievements[6] = array('id'=>'complete_stage_4');
-$achievements[7] = array('id'=>'unlock_stage_5');
-$achievements[8] = array('id'=>'complete_stage_5');
-$achievements[9] = array('id'=>'unlock_stage_6');
-$achievements[10]= array('id'=>'complete_stage_6');
+$achievements[0] = buildAch('complete_stage_1',50,false);
+$achievements[1] = buildAch('unlock_stage_2',  50,false);
+$achievements[2] = buildAch('complete_stage_2',50,true);
+$achievements[3] = buildAch('unlock_stage_3',  50,true);
+$achievements[4] = buildAch('complete_stage_3',50,true);
+$achievements[5] = buildAch('unlock_stage_4',  50,true);
+$achievements[6] = buildAch('complete_stage_4',50,true);
+$achievements[7] = buildAch('unlock_stage_5',  50,true);
+$achievements[8] = buildAch('complete_stage_5',50,true);
+$achievements[9] = buildAch('unlock_stage_6'  ,50,true);
+$achievements[10]= buildAch('complete_stage_6',50,true);
+
