@@ -22,7 +22,30 @@ function buildMap($dom,$langMap){
 function buildAmazonLeaderboards(){
 	global $data, $leaderboards;
 	$res='';
-	$res = 'buildAmazonLeaderboards: PENDING IMPLEMENTATION!'."\n\n";
+
+// HEADER SAMPLE:
+// LeaderboardId,IconId,SortOrder,ScoreThreshold,Title_en_US,ScoreUnits_en_Us,Description_en_US,Title_de_DE,ScoreUnits_de_DE,Description_de_DE,Title_fr_FR,ScoreUnits_fr_FR,Description_fr_FR,Title_it_IT,ScoreUnits_it_IT,Description_it_IT,Title_en_GB,ScoreUnits_en_GB,Description_en_GB,Title_es_ES,ScoreUnits_es_ES,Description_es_ES,Title_ja_JP,ScoreUnits_ja_JP,Description_ja_JP,Title_zh_CN,ScoreUnits_zh_CN,Description_zh_CN,Title_ko_KR,ScoreUnits_ko_KR,Description_ko_KR,Title_pt_BR,ScoreUnits_pt_BR,Description_pt_BR,Title_ru_RU,ScoreUnits_ru_RU,Description_ru_RU
+	$res='LeaderboardId,IconId,SortOrder,ScoreThreshold';
+	foreach($data[$leaderboards[0]['title_id']] as $lang=>$v){
+		$res.=',Title_'.$lang.',ScoreUnits_'.$lang.',Description_'.$lang;
+	}
+
+
+// BODY SAMPLE:
+// LeaderboardId,IconId,highest scores first,1,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description,Leaderboard Title,Points,Leaderboard Description
+	foreach($leaderboards as $ldb){
+		if($ldb['highest_scores_first']===true){
+			$sort = 'highest scores first';
+		}else{
+			$sort = 'lowest scores first';
+		}
+		$res .= "\n".$ldb['id'].','.$ldb['icon'].','.$sort.','.$ldb['score_limit'];
+		foreach($data[$ldb['title_id']] as $lang=>$title){
+			$units = $data[$ldb['units_id']][$lang];
+			$description = $data[$ldb['description_id']][$lang];
+			$res.=',"'.$title.'","'.$units.'","'.$description.'"'; // add to every achievement, his description for before and after achieved
+		}
+	}
 	return $res;
 }
 

@@ -78,7 +78,11 @@ $forcedTranslations['zh-CN'] = $forcedTranslations['ja-JP'];
 $forcedTranslations['zh-TW'] = $forcedTranslations['ja-JP'];
 
 $leaderboards=array();
-$leaderboards[0] = array('id'=>'leaderboard_completed_levels');
+$leaderboards[0] = array('id'=>'leaderboard_completed_levels',
+					'title_id'=>'leaderboard_completed_levels',
+					'description_id'=>'leaderboard_completed_levels',
+					'icon'=>'puralax_icon','highest_scores_first'=>true,'score_limit'=>1000,
+					'units_id'=>'level_plural','singular_units_id'=>'level_singular');
 
 function buildAch($id,$points,$hidden,$icon,$titleID,$descriptionID,$completedID){
 	return array('id'=>$id,
