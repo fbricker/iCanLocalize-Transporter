@@ -1,5 +1,6 @@
 <?php 
 require_once "simple_html_dom.php";
+global $langMap,$nonSingularLanguages,$forcedTranslations,$achievements,$leaderboards;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +79,6 @@ function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
 		$img = 'puralax_'.$r1.'_completed.png';		
 	}
 	foreach($data[$id] as $k=>$v){
-//		if($k!='es-ES' && $k!='en-US') continue;
 		$after = buildLine($data[$afterID][$k],$r1);
 		$res.='
                             <locale name="'.$k.'">
@@ -92,10 +92,8 @@ function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
     return $res;
 }
 
-define('SKU','0777');
-
-global $langMap,$nonSingularLanguages,$forcedTranslations;
-
+$leaderboards = array();
+$achievements = array();
 $nonSingularLanguages = array('fr-FR','pt-BR','ru-RU','ja-JP','cmn-Hans','cmn-Hant','tr-TR','vi-VI','ko-KR');
 $langMap = array();
 

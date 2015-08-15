@@ -1,5 +1,5 @@
 <?php
-
+define('SKU','0777');
 
 $forcedTranslations = array();
 
@@ -25,3 +25,19 @@ $forcedTranslations['ja-JP']['9'] = '九';
 
 $forcedTranslations['cmn-Hans'] = $forcedTranslations['ja-JP'];
 $forcedTranslations['cmn-Hant'] = $forcedTranslations['ja-JP'];
+
+$leaderboards=array();
+$leaderboards[0] = array('id'=>'leaderboard_completed_levels');
+
+$achievements=array();
+$achievements[0] = array('id'=>'complete_stage_1');
+$achievements[1] = array('id'=>'unlock_stage_2');
+$achievements[2] = array('id'=>'complete_stage_2');
+$achievements[3] = array('id'=>'unlock_stage_3');
+$achievements[4] = array('id'=>'complete_stage_3');
+$achievements[5] = array('id'=>'unlock_stage_4');
+$achievements[6] = array('id'=>'complete_stage_4');
+$achievements[7] = array('id'=>'unlock_stage_5');
+$achievements[8] = array('id'=>'complete_stage_5');
+$achievements[9] = array('id'=>'unlock_stage_6');
+$achievements[10]= array('id'=>'complete_stage_6');
