@@ -1,18 +1,17 @@
 <?php 
 require_once "simple_html_dom.php";
-global $appleLangMap,$nonSingularLanguages,$forcedTranslations,$achievements,$leaderboards,$data,$amazonLangMap;
+global $appleLangMap,$nonSingularLanguages,$achievements,$leaderboards,$data,$amazonLangMap;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function buildMap($dom){
-	global $appleLangMap;
+function buildMap($dom,$langMap){
 	$res = array();
 	$eng=explode("<translation",$dom->innertext,2);
 	
-	foreach($appleLangMap['English'] as $lang) $res[$lang]=$eng[0];
+	foreach($langMap['English'] as $lang) $res[$lang]=$eng[0];
 	foreach($dom->find('translation') as $elem){
-		foreach($appleLangMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;;
+		foreach($langMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;;
 	}
 	return $res;
 }
@@ -50,24 +49,6 @@ function getImage($img){
 
 }
 
-function doReplaces($string,$lang,$r1,$r2){
-	global $forcedTranslations;
-	if(!empty($forcedTranslations[$lang][$r1])) $r1 = $forcedTranslations[$lang][$r1];
-	if(!empty($forcedTranslations[$lang][$r2])) $r2 = $forcedTranslations[$lang][$r2];
-
-	$string = str_replace('%1', $r1, $string);
-	$string = str_replace('%2', $r2, $string);
-	return str_replace("\r","",trim($string));
-}
-
-function buildLine($str,$number){
-	$lines = explode("\n",str_replace("\n\n","\n",$str));
-	if($number=='1') return $lines[0];
-	$aux = explode("!",$lines[0],2);
-	if(count($aux)==1) $aux = explode("！",$lines[0],2);
-	return trim(str_replace('...','',$lines[($number-1)])).$aux[1];
-}
-
 function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
 	$res='';
 	list($mode,$none)=explode('_',$id,2);
@@ -79,7 +60,7 @@ function buildAchievement($id,$beforeID,$afterID,$data,$r1=''){
 		$img = 'puralax_'.$r1.'_completed.png';		
 	}
 	foreach($data[$id] as $k=>$v){
-		$after = buildLine($data[$afterID][$k],$r1);
+		$after = $data[$afterID][$k];
 		$res.='
                             <locale name="'.$k.'">
                                 <title>'.doReplaces($v,$k,$r2,$r2).'</title>
