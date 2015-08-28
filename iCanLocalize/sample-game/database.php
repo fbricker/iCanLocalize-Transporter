@@ -1,6 +1,7 @@
 <?php
 define('SKU','0777');
 global $forcedTranslations;
+$xmlFile = $folder.'/strings.xml'; 
 
 
 function buildLine($str,$number){

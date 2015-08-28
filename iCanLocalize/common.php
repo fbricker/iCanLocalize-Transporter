@@ -5,13 +5,13 @@ global $appleLangMap,$nonSingularLanguages,$achievements,$leaderboards,$data,$am
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function buildMap($dom,$langMap){
+function buildICLMap($dom,$langMap){
 	$res = array();
 	$eng=explode("<translation",$dom->innertext,2);
 	
 	foreach($langMap['English'] as $lang) $res[$lang]=$eng[0];
 	foreach($dom->find('translation') as $elem){
-		foreach($langMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;;
+		foreach($langMap[$elem->attr['language']] as $lang) $res[$lang]=$elem->innertext;
 	}
 	return $res;
 }
@@ -43,7 +43,7 @@ function buildAmazonLeaderboards(){
 		foreach($data[$ldb['title_id']] as $lang=>$title){
 			$units = $data[$ldb['units_id']][$lang];
 			$description = $data[$ldb['description_id']][$lang];
-			$res.=',"'.$title.'","'.$units.'","'.$description.'"'; // add to every achievement, his description for before and after achieved
+			$res.=',"'.$title.'","'.trim($units).'","'.$description.'"'; // add to every achievement, his description for before and after achieved
 		}
 	}
 	return $res;
@@ -135,6 +135,13 @@ function buildIOSAchievement($id,$beforeID,$afterID,$data,$r1=''){
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+function getLangName($name,$map){
+	foreach($map as $k=>$v){
+		if(in_array($name, $v)) return $k;
+	}
+	return null;
+}
 
 $data = array();
 $leaderboards = array();

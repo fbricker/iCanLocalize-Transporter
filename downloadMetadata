@@ -11,7 +11,7 @@ if [ "$user" == "" -o "$sku" == "" -o "$#" != "2" ]; then
 	echo "ERROR: Missing parameters."
 	echo "Use mode:"
 	echo "------------"
-	echo "$0 (iTunes Connect User) (password) (APP SKU)"
+	echo "$0 (iTunes Connect User) (APP SKU)"
 	echo " "
 	exit
 fi
